@@ -37,6 +37,7 @@ main( )
         fprintf( stderr, "Using %d threads\n", NUMT );
 
         double maxMegaMults = 0.;
+        double totalMegaMults = 0.;
 
         for( int t = 0; t < NUMTRIES; t++ )
         {
@@ -50,11 +51,13 @@ main( )
 
                 double time1 = omp_get_wtime( );
                 double megaMults = (double)SIZE/(time1-time0)/1000000.;
+                totalMegaMults += megaMults;
                 if( megaMults > maxMegaMults )
                         maxMegaMults = megaMults;
         }
 
         printf( "Peak Performance = %8.2lf MegaMults/Sec\n", maxMegaMults );
+        printf( "Average Performance = %8.2lf MegaMults/Sec\n", totalMegaMults / NUMTRIES);
 
 	// note: %lf stands for "long float", which is how printf prints a "double"
 	//        %d stands for "decimal integer", not "double"
