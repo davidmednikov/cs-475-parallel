@@ -1,1 +1,1 @@
-# davidmednikov-cs-475-parallel
+# cs-475-parallel
