@@ -34,10 +34,10 @@
 
 // title of these windows:
 
-const char *WINDOWTITLE = { "OpenCL/OpenGL Particle System -- David Mednikov" };
+const char *WINDOWTITLE = { "OpenCL/OpenGL Particle System -- Joe Parallel" };
 const char *GLUITITLE   = { "User Interface Window" };
 
-// random parameters:					
+// random parameters:
 
 const float XMIN = 	{ -100.0 };
 const float XMAX = 	{  100.0 };
@@ -365,7 +365,7 @@ Display( )
 	if( ShowPerformance )
 	{
 		char str[128];
-		sprintf( str, "%6.1f GigaParticles/Sec", (float)NUM_PARTICLES/ElapsedTime/1000000000. );
+		sprintf( str, "%6.1f MegaParticles/Sec", (float)NUM_PARTICLES/ElapsedTime/1000000. );
 		glDisable( GL_DEPTH_TEST );
 		glMatrixMode( GL_PROJECTION );
 		glLoadIdentity();
@@ -670,7 +670,7 @@ InitGraphics( )
 void
 InitLists( )
 {
-	SphereList = glGenLists( 1 );
+	SphereList = glGenLists( 2 );
 	glNewList( SphereList, GL_COMPILE );
 
 
@@ -693,8 +693,11 @@ InitLists( )
 	// 	in the .cl file
 	// ****************************************
 
-	// do this for yourself...
-
+		glColor3f(.1f, .1f, .9f);	// 0. <= r,g,b <= 1.
+		glPushMatrix();
+			glTranslatef(600.f, 100.f, 200.f);
+			glutWireSphere(450.f, 100, 100);
+		glPopMatrix();
 
 
 
